@@ -6,7 +6,7 @@
     
     Date: 2018_09_24
   
-    Description: Script to shutdown/reboot/suspend/hibernate 
+    Description: Script to poweroff/reboot/suspend/hibernate 
                  the computer after a certain time defined by 
                  the user.
 ***************************************************************/
@@ -24,14 +24,13 @@
 char* command;
 long time_sec;
 time_t timer;
-struct tm* tm_info;
 
 void helper(void)
 {
     printf("\n\t\t\t\t\tShutdown Scheduler\n\n"
-           "Script to shutdown/reboot/suspend/hibernate the computer after a certain time defined by the user.\n\n"
-           "Usage: my_shutdown <operation> -[s/m/h/t] <time>\n\n"
-           "Available operations:\n 1) poweroff\n 2) reboot\n 3) suspend\n 4) hibernate\n 5) hybrid-sleep\n\n"
+           "Script to poweroff/reboot/suspend/hibernate the computer after a certain time defined by the user.\n\n"
+           "Usage: my_shutdown [operation] -[s/m/h/t] [time]\n\n"
+           "Available operations:\n 1) poweroff\n 2) reboot\n 3) suspend\n 4) hibernate\n 5) hybrid-sleep\n 6) help\n\n"
            "The chosen operation to perform must be written as first argument and in lowercase.\n\n"
            "To define the time, after which the operation will be executed, there are several choices:\n"
            "1) use -s to use seconds as unit of measure and, after that, the amount of seconds;\n"
@@ -113,7 +112,7 @@ void human_option(char* human_time)
     long h, m, a_h, a_m, a_s, h_diff, m_diff;
     char actual_formatted_time[8];
     int s = 3;
-
+    struct tm* tm_info;
     char* endptr;   //to check the input
 
     time(&timer);
