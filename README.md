@@ -29,12 +29,15 @@ You can choose between four different format option for the time:
 
 After the format option you must type in the amount of hours/minutes/seconds or the precise time in the aforementioned format.
 
-Examples:
-
-$ my-shutdown suspend -m 70             //will suspend the system after 70 minutes
-$ my-shutdown hibernate -t 07:35        //will hibernate the system at 07:35
-$ my-shutdown help                      //will show you an helper
-
 By choice, it was decided not to make it possible to type in an amount such as 0 (it's a shutdown scheduler!).
 
 After setting a timer, it's possible to undo it by sending a SIGINT signal by pressing ctrl+c.
+
+Examples:
+
+$ my-shutdown suspend -m 70             //will suspend the system after 70 minutes
+
+$ my-shutdown hibernate -t 07:35        //will hibernate the system at 07:35
+
+$ my-shutdown help                      //will show you an helper
+
