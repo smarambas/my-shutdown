@@ -3,14 +3,12 @@
 **my-shutdown** is a command line shutdown scheduler developed in C for UNIX/POSIX systems.
 
 The objective was to create a more flexible alternative to the "shutdown" utility.
+
 "my-shutdown", in fact, can poweroff/reboot/suspend/hibernate/hybrid-sleep the system after a certain time defined by the user and it does that by using the respective "systemctl" command.
 
 The usage is quite simple:
 
-$ my-shutdown <operation> -[s/m/h/t] <time>
-
-or, if you don't want to put the executable in your PATH:
-$ ./my-shutdown <operation> -[s/m/h/t] <time>
+$ my-shutdown [operation] -[s/m/h/t] [time]
 
 The available operations are:
 1) poweroff
