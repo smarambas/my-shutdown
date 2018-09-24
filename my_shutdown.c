@@ -147,12 +147,12 @@ void human_option(char* human_time)
 
     h = strtol(hours, &endptr, 10);
     if(*endptr != 0 || h > 23) {
-        printf("Error: invalid time format.\n");
+        printf("Error: invalid time.\n");
         exit(-1);
     }
     m = strtol(min, &endptr, 10);
     if(*endptr != 0 || m > 59) {
-        printf("Error: invalid time format.\n");
+        printf("Error: invalid time.\n");
         exit(-1);
     }
     a_h = strtol(a_hours, NULL, 10);
@@ -185,7 +185,7 @@ int main(int argc, char** argv)
 
     if(argc < 4) {
         if(argc < 2) {
-            printf("Usage: my_shutdown <operation> -[s/m/h] <timer>\n\n"
+            printf("Usage: my_shutdown [operation] -[s/m/h] [timer]\n\n"
                    "Try 'my_shutdown help' for more information.\n\n");
             exit(-1);
         }
@@ -194,7 +194,7 @@ int main(int argc, char** argv)
             exit(0);
         }
         else {
-            printf("Usage: my_shutdown <operation> -[s/m/h] <timer>\n\n"
+            printf("Usage: my_shutdown [operation] -[s/m/h] [timer]\n\n"
                    "Try 'my_shutdown help' for more information.\n\n");
             exit(-1);
         }
@@ -202,6 +202,11 @@ int main(int argc, char** argv)
     
     if(strcmp(argv[1], "poweroff") != 0 && strcmp(argv[1], "reboot") != 0 && strcmp(argv[1], "suspend") != 0 && strcmp(argv[1], "hibernate") != 0 && strcmp(argv[1], "hybrid-sleep") != 0) {
         printf("Error: invalid operation.\n");
+        exit(-1);
+    }
+
+    if(strlen(argv[3]) > 5) {
+        printf("Error: invalid time.\n");
         exit(-1);
     }
 
