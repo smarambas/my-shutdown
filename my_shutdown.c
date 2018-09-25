@@ -23,7 +23,6 @@
 
 char* command;
 long time_sec;
-time_t timer;
 
 void helper(void)
 {
@@ -113,12 +112,12 @@ void human_option(char* human_time)
     char actual_formatted_time[8];
     int s = 3;
     struct tm* tm_info;
+    time_t timer;
     char* endptr;   //to check the input
 
     time(&timer);
     tm_info = localtime(&timer);
     strftime(actual_formatted_time, 8, "%H:%M:%S", tm_info);  //actual time
-    //puts(actual_formatted_time);
 
     hours = allocate_string(s);
     min = allocate_string(s);
@@ -128,22 +127,18 @@ void human_option(char* human_time)
         
     memcpy(a_hours, &actual_formatted_time[0], 2);
     a_hours[2] = '\0';
-    //printf("%s\n", a_hours);
 
     memcpy(a_min, &actual_formatted_time[3], 2);
     a_min[2] = '\0';
-    //printf("%s\n", a_min);
 
     memcpy(a_sec, &actual_formatted_time[6], 2);
     a_sec[2] = '\0';
     
     memcpy(hours, &human_time[0], 2);
     hours[2] = '\0';
-    //printf("%s\n", hours);
 
     memcpy(min, &human_time[3], 2);
     min[2] = '\0';
-    //printf("%s\n", min);
 
     h = strtol(hours, &endptr, 10);
     if(*endptr != 0 || h > 23) {
