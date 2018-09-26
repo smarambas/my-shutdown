@@ -73,6 +73,25 @@ int which_option(char* opt)
     return res;
 }
 
+char* which_operation(char* op)
+{
+    if(strcmp(op, "poweroff") == 0) {
+        return op;
+    }
+    else if(strcmp(op, "reboot") == 0) {
+        return op;
+    }
+    else if(strcmp(op, "suspend") == 0) {
+        return "suspension";
+    }
+    else if(strcmp(op, "hibernate") == 0) {
+        return "hibernation";
+    }
+    else if(strcmp(op, "hybrid-sleep") == 0) {
+        return op;
+    }
+}
+
 char* default_option(char* t_id, long t_input)
 {
     if(strcmp(t_id, "-s") == 0) {
@@ -173,6 +192,7 @@ int main(int argc, char** argv)
     long time_input;
     char* option;
     char* time_id;
+    char* operation;
     double integral;
     double fractional;
     struct sigaction act;
@@ -263,9 +283,18 @@ int main(int argc, char** argv)
         exit(-1);
     }
 
-    alarm(time_sec);
+    operation = which_operation(argv[1]);
 
-    pause();    
+    alarm(time_sec);
+    
+    printf("\n");
+    for(long i = time_sec; i >= 0; i--) {
+        printf("\rRemaining time until %s: %ld        ", operation, i);
+        fflush(stdout);
+        sleep(1);
+    }
+
+    //pause();    
 
     return 0;
 }
